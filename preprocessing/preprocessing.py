@@ -18,8 +18,12 @@ def clean_name_edge_cases(name):
         return "RICHARD NIXON"
     elif name in {"HILLARY RODHAM CLINTON"}:
         return "HILLARY CLINTON"
-    elif name in {'TRUMP ( OF THE UNION)', "DONALD TRUMP", "TRUMP"}:
-        return ""
+    elif name in {'TRUMP ( OF THE UNION)', "TRUMP"}:
+        return "DONALD TRUMP"
+    elif name in {"SREENIVASAN", "SREENIVASN", "HARI"}:
+        return "HARI SREENIVASAN"
+    elif name in {"SPICER"}:
+        return "SEAN SPICER"
     return name
 
 def clean_names(name):
@@ -57,11 +61,11 @@ def clean_names(name):
                  "(ICONNECTICUT)", "(VTI)", "(VTD)", "(IVT)", "(IVA.)", "(IVA)",
                  "(VOICEOVER)", "(TO ANDRE)", " R)", "[NARRATION]", "[MAY 2014]"):
         name = name.replace(misc, "")
-            
-    name = clean_name_edge_cases(name)
     name = remove_party(name)
     name = name.replace("()", "")
     name = name.replace("[", "").replace("]", "")
+    name = name.replace("“", "")
+    name = clean_name_edge_cases(name)
     return name
 
 titles = ("PRESIDENT", "PRIME MINISTER", "MAYOR",
@@ -69,18 +73,18 @@ titles = ("PRESIDENT", "PRIME MINISTER", "MAYOR",
           "U.N. AMBASSADOR", "MEDAL OF HONOR RECIPIENT",
           "LT.", "COLONEL", "COL.", "SGT.", "CAPT.", "GEN.",
           "ADM.", "VICE ADM.", "COM.", "MAJ.", "BRIG.", "CPL.",
-          "(USGS)",
+          "(USGS)", "LIEUTENANT",
           "U.S. ARMY", "U.S.", "U. S.", "U.S",
           "R- WIS.", "MASSACHUSETTS", "MASS.",
           "ARIZONA", "NEW YORK", "ICONN.",
           "MINNESOTA", "1ST", "REPRESENTATIVE",
           "GOV.", "REP.", "SEN.", "REPUBLICAN", "DEMOCRAT",
-          "DEMOCRATIC",
+          "DEMOCRATIC", "COMMITTEE", "CONGRESSMAN", "AUSTRALIAN",
           "CHAIRMAN", "OFFICER", "JUDGE", "FATHER",
           "REV.", "DR.", "PROF.", "FMR.", "FORMER", "RETIRED",
-          "SPC.", "SEC.", "DEL.",
+          "SPC.", "SEC.", "DEL.", "DEPUTY",
           "RET.", "FILM CRITIC", "OF PACIFICA RADIO", "STAFF", "STATE",
-          "ACTING")
+          "ACTING", "IC SENATOR")
 
 specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE UNITED STATE",
                    "PRESIDENT OF THE UNITED STATES",
@@ -90,10 +94,13 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                    "INDEPENDENT SENATOR",
                    "OF VERMONT", "OF NEBRASKA", "OF PENNSYLVANIA", "OF OHIO",
                    "OF INDIANA", "OF ARIZONA", "OF TEXAS", "OF ALABAMA",
-                   "OF WISCONSIN", "OF COLORADO", "OF OREGON",
+                   "OF WISCONSIN", "OF COLORADO", "OF OREGON", "OF ILLINOIS",
+                   "OF DETROIT", "OF CONNECTICUT",
+                   "ON CHINA",
                    "NEW YORK CITY",
                    "LANCE CPL.",
                    "ADJUTANT GENERAL",
+                   "HOUSE FREEDOM CAUCUS",
                    "FORMER SUPREME COURT JUSTICE", "WHITE HOUSE PRESS SECRETARY",
                    "WHITE HOUSE BUDGET DIRECTOR",
                  "AMBASSADOR TO THE UNITED NATIONS",
@@ -142,19 +149,38 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                    "UBER SPOKESPERSON",
                    "INTERIOR SECRETARY",
                    "FED CHAIR",
+                   "CARDOZO LAW SCHOOL PROFESSOR",
                    "ATTORNEY GENERAL",
                    "WYOMING SENATOR",
                    "PROJECT MANAGER",
+                   "OF THE SHERIFF’S OFFICE",
+                   "MAJORITY WHIP",
+                   "PUERTO RICO GOVERNOR",
                    "ILLINOIS DEMOCRAT",
                    "ILLINOIS DEMOCRAT",
                    "SECRETARY OF EDUCATION",
                    "NATO SECRETARYGENERAL",
                    "NINETEENYEAROLD",
+                   "SPEAKER OF THE HOUSE",
                    "ACTING UKRAINIAN",
+                   "WALL STREET JOURNAL REPORTER",
+                   "DEMOCRATIC PRESIDENTIAL CANDIDATE",
+                   "FINANCIAL TIMES ARCHITECTURE CRITIC",
+                   "FULTON COUNTY DISTRICT ATTORNEY",
+                   "GOVERNING SOCIALIST PARTY SPOKESPERSON",
                    "RADIO IOWA’S",
+                   "SAINT LOUIS COUNTY POLICE CHIEF",
+                   "POLICE COMMISSIONER",
+                   "UNIVERSITY OF AKRON ECONOMIST",
+                   "CHINESE FOREIGN MINISTRY SPOKESWOMAN",
+                   "HARVARD BUSINESS SCHOOL PROFESSOR",
+                   "PUERTO RICO GOVERNOR",
+                   "HEAD OF U.S. BOND TRADING",
+                   "NATIONAL SECURITY ADVISOR",
                  "UNIVERSITY OF CENTRAL FLORIDA’S PRESIDENT", "SECRETARY OF VETERANS AFFAIRS RETIRED",
                   "HOUSING AND URBAN DEVELOPMENT SECRETARY", "HEALTH AND HUMAN SERVICES SECRETARY",
                   "BRITISH FOREIGN SECRETARY", "BRITISH PRIME MINISTER",
                   "CHIEF MASTER", "DALLAS POLICE CHIEF", "COUNTY SCHOOL ADMINISTRATOR",
                   "E.U. COMPETITION COMMISSIONER", "FACEBOOK GENERAL COUNSEL", "EXECUTIVE VICE",
                   "OF AMNESTY INTERNATIONAL", "GM VICE", "GREEN PARTY CANDIDATE")
+
