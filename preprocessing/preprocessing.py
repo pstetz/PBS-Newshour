@@ -24,6 +24,8 @@ def clean_name_edge_cases(name):
         return "HARI SREENIVASAN"
     elif name in {"SPICER"}:
         return "SEAN SPICER"
+    elif name in {"PUTIN"}:
+        return "VLADIMIR PUTIN"
     return name
 
 def clean_names(name):
@@ -68,7 +70,8 @@ def clean_names(name):
     name = clean_name_edge_cases(name)
     return name
 
-titles = ("PRESIDENT", "PRIME MINISTER", "MAYOR",
+titles = ("PRESIDENT", "PRESDIENT", "PRIME MINISTER", "MAYOR",
+          "CHANCELLOR",
           "U.S. ATTORNEY GENERAL", "U.S AMBASSADOR",
           "U.N. AMBASSADOR", "MEDAL OF HONOR RECIPIENT",
           "LT.", "COLONEL", "COL.", "SGT.", "CAPT.", "GEN.",
@@ -87,7 +90,7 @@ titles = ("PRESIDENT", "PRIME MINISTER", "MAYOR",
           "ACTING", "IC SENATOR")
 
 specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE UNITED STATE",
-                   "PRESIDENT OF THE UNITED STATES",
+                   "PRESIDENT OF THE UNITED STATES", "GERMAN CHANCELLOR",
                  "PRESIDENT-ELECT", "FORMER GOV.", "FMR. JUSTICE",
                  "1ST LT.", "2ND LT.", "2ND. LT.", "UTAH REP.", "1ST CLASS",
                  "FORMER U.S. AMBASSADOR TO VIETNAM", "FORMER U.S. CONGRESSWOMAN",
@@ -115,6 +118,7 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                  "CHIEF OF MILITARY INTELLIGENCE", "SENATE FOREIGN RELATIONS COMMITTEE",
                    "MINISTER OF AGRICULTURE", "FBI DIRECTOR",
                    "HOUSE MAJORITY LEADER",
+                   "SECRETARY OF DEFNESE",
                    "HOUSE MINORITY LEADER",
                    "HOUSE MINORITY WHIP",
                    "WHITE HOUSE SPOKESMAN",
