@@ -18,7 +18,7 @@ def clean_name_edge_cases(name):
         return "RICHARD NIXON"
     elif name in {"HILLARY RODHAM CLINTON", "HILLARY RODHAM CLINTON IC"}:
         return "HILLARY CLINTON"
-    elif name in {'TRUMP ( OF THE UNION)', "TRUMP"}:
+    elif name in {'TRUMP ( OF THE UNION)', "TRUMP", "TRUMP (STATE OF THE UNION)"}:
         return "DONALD TRUMP"
     elif name in {"SREENIVASAN", "SREENIVASN", "HARI"}:
         return "HARI SREENIVASAN"
@@ -29,6 +29,8 @@ def clean_name_edge_cases(name):
     # Sorry to any hispanics, but accents are hard to type!
     elif name in {"CARMEN YULÍN CRUZ"}:
         return "CARMEN YULIN CRUZ"
+    elif name in {"MIKE MULLEN"}:
+        return "MICHAEL MULLEN"
     return name
 
 def clean_names(name):
@@ -69,6 +71,7 @@ def clean_names(name):
     name = remove_party(name)
     name = name.replace("()", "")
     name = name.replace("[", "").replace("]", "")
+    name = name.strip()
     name = clean_name_edge_cases(name)
     return name
 
@@ -78,15 +81,17 @@ def get_mistaken_names():
 
 titles = ("PRESIDENT", "PRESDIENT", "PRESIDEDNT", "PRESIENT", "PRESIDNENT",
           "PRIME MINISTER", "MAYOR",
-          "CHANCELLOR",
+          "CHANCELLOR", "DEPARTMENT SPOKESMAN",
           "U.S. ATTORNEY GENERAL", "U.S AMBASSADOR",
           "U.N. AMBASSADOR", "MEDAL OF HONOR RECIPIENT",
           "LT.", "COLONEL", "COL.", "SGT.", "CAPT.", "GEN.",
           "ADM.", "VICE ADM.", "COM.", "MAJ.", "BRIG.", "CPL.",
-          "(USGS)", "LIEUTENANT", "MEXICAN",
+          "(USGS)", "LIEUTENANT", "MEXICAN", "COMMANDER",
           "U.S. ARMY", "U.S.", "U. S.", "U.S",
           "R- WIS.", "MASSACHUSETTS", "MASS.",
-          "MISSISSIPPI", "JAPANESE",
+          "MISSISSIPPI", "JAPANESE", "SOUTH DAKOTA",
+          "NORTH DAKOTA", "TEXAS STATE",
+          "SECRETARY-GENERAL", "MAJORITY LEADER",
           "ARIZONA", "NEW YORK", "ICONN.",
           "MINNESOTA", "1ST", "REPRESENTATIVE",
           "HUDSON INSTITUTE",
@@ -95,8 +100,8 @@ titles = ("PRESIDENT", "PRESDIENT", "PRESIDEDNT", "PRESIENT", "PRESIDNENT",
           "DEMOCRATIC", "COMMITTEE", "CONGRESSMAN", "AUSTRALIAN",
           "CHAIRMAN", "OFFICER", "JUDGE", "FATHER",
           "REV.", "DR.", "PROF.", "FMR.", "FORMER", "RETIRED",
-          "SPC.", "SEC.", "DEL.", "DEPUTY",
-          "RET.", "FILM CRITIC", "OF PACIFICA RADIO", "STAFF", "STATE",
+          "SPC.", "SEC.", "DEL.", "DEPUTY", "ADMIRAL",
+          "RET.", "FILM CRITIC", "OF PACIFICA RADIO",
           "ACTING", "IC SENATOR")
 
 specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE UNITED STATE",
@@ -110,14 +115,40 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                    "OF WISCONSIN", "OF COLORADO", "OF OREGON", "OF ILLINOIS",
                    "OF DETROIT", "OF CONNECTICUT", "OF NEW MEXICO", "OF CALIFORNIA",
                    "ON CHINA", " AS LBJ",
+                   "STAFF SGT.",
+                   "SOLICITOR GENERAL",
+                   "POSTMASTER GENERAL",
+                   "SENATE MAJORITY LEADER",
+                   "SERGEANT MAJOR",
+                   "NATO SECRETARY-GENERAL",
+                   "MAJOR GENERAL",
+                   "INSPECTOR GENERAL",
+                   "GOVERNOR GENERAL",
+                   "BRIGADE COMMANDER",
+                   "CHIEF WARRANT",
+                   "FIRE CHIEF",
+                   "AIR CHIEF",
+                   "ASSISTANT CHIEF",
+                   "CHIEF JUSTICE",
+                   "CHIEF PETTY",
+                   "OAK CREEK POLICE CHIEF",
+                   "POLICE CHIEF ",
+                   "SENIOR CHIEF",
+                   "REAR ADMIRAL",
+                   "STATE REP.",
+                   "STATE SENATOR",
+                   "STATE SEN.",
+                   "STAFF MAJ.",
                    "RECOLOGY’S",
+                   "PENNSYLVANIA STATE POLICE",
+                   "NORTH TOWER OFFICE WORKER",
                    "COLORADO DEMOCRAT",
                    "NEW YORK CITY",
                    "PARTNERSHIP DIRECTOR",
                    "WASHINGTON POST FILM CRITIC",
                    "(D) WASHINGTON",
                    "LANCE CPL.",
-                   "ADJUTANT GENERAL",
+                   "STATE ADJUTANT GENERAL",
                    "HOUSE FREEDOM CAUCUS",
                    "FORMER SUPREME COURT JUSTICE", "WHITE HOUSE PRESS SECRETARY",
                    "WHITE HOUSE BUDGET DIRECTOR",
@@ -139,8 +170,8 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                    "WHITE HOUSE SPOKESMAN",
                    "HOUSE SPEAKER",
                    "SEC. OF STATE",
-                   "DEPARTMENT SPOKESWOMAN",
-                   "DEPARTMENT SPOKESMAN",
+                   "STATE DEPARTMENT SPOKESWOMAN",
+                   "STATE DEPARTMENT SPOKESMAN",
                    "ASSISTANT ATTORNEY GENERAL",
                    "BISHOP",
                    "FIRST LADY",
@@ -183,14 +214,18 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                    "NINETEENYEAROLD",
                    "SPEAKER OF THE HOUSE",
                    "ACTING UKRAINIAN",
+                   "UTAH STATE",
                    "WALL STREET JOURNAL REPORTER",
                    "DEMOCRATIC PRESIDENTIAL CANDIDATE",
                    "FINANCIAL TIMES ARCHITECTURE CRITIC",
                    "FULTON COUNTY DISTRICT ATTORNEY",
                    "GOVERNING SOCIALIST PARTY SPOKESPERSON",
                    "RADIO IOWA’S",
+                   "UNITED STATES AMBASSADOR",
                    "SAINT LOUIS COUNTY POLICE CHIEF",
                    "POLICE COMMISSIONER",
+                   "STATE WATER BOARD CHAIR",
+                   "OF THE DAILY BEAST",
                    "UNIVERSITY OF AKRON ECONOMIST",
                    "CHINESE FOREIGN MINISTRY SPOKESWOMAN",
                    "HARVARD BUSINESS SCHOOL PROFESSOR",
@@ -217,12 +252,26 @@ mistakes = {'DANIEL SAYS THE SCIENTISTS ON THE TEAM AND THE MILITARY HAVE A SHAR
             'HILLARY CLINTON CAMPAIGN VOLUNTEER',
             'BUT CLINTON THEN SAYS',
             'FOR HILLARY CLINTON',
+            'STATE  JEN PSAKI ELABORATED',
             'AS FOR TRUMP',
             'BUT TRUMP TOLD CNN',
             'ENTER  TRUMP',
             'EVEN  TRUMP',
             "ANGELA MERKEL YESTERDAY",
             "FROM  ANGELA MERKEL",
+            'A VATICAN STATEMENT SAID',
+ 'BUT IN A STATEMENT',
+ 'BUT UNDER STATE LAW',
+ 'FOR THE STATE',
+ 'IN A JOINT STATEMENT',
+ 'IN A STATEMENT',
+ 'IN A STATEMENT TODAY',
+ 'IN A WRITTEN STATEMENT',
+ 'IN TODAY’S STATEMENT',
+            'THE COMPANY’S STATEMENT READ',
+ 'ITS STATEMENT READ',
+            'AT LEAST FOR NOW',
+            'SANDOVAL SAID IN A STATEMENT',
             'AND IN WASHINGTON',
             'IN WASHINGTON',
             'TO CRITICS BACK IN WASHINGTON',
@@ -1419,4 +1468,9 @@ mistakes = {'DANIEL SAYS THE SCIENTISTS ON THE TEAM AND THE MILITARY HAVE A SHAR
             'UPPING THE ANTE',
             'TOUGH AUSTERITY MEASURES',
             'THIS MAKES VOTER CONTACT',
+            "AND THIS WONDERFUL GENERAL",
+            'AND DESPITE MAJOR DIFFERENCES',
+            'ANOTHER MAJOR PROBLEM AND EXPENSE',
+            'IN THE MAJORITY OPINION',
+            'NOW A NEW MAJOR TASK',
                  }
