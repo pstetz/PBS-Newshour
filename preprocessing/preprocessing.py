@@ -14,6 +14,10 @@ def clean_name_edge_cases(name):
         return "JUDY WOODRUFF"
     elif name in {"OBAMA"}:
         return "BARACK OBAMA"
+    elif name in {"JOE BIDEN", "JOSE BIDEN", "BIDEN"}:
+        return "JOSEPH BIDEN"
+    elif name in {"VICE MIKE  PENCE"}:
+        return "MIKE PENCE"
     elif name in {"S RICHARD NIXON"}:
         return "RICHARD NIXON"
     elif name in {"HILLARY RODHAM CLINTON", "HILLARY RODHAM CLINTON IC"}:
@@ -29,6 +33,10 @@ def clean_name_edge_cases(name):
     # Sorry to any hispanics, but accents are hard to type!
     elif name in {"CARMEN YULÍN CRUZ"}:
         return "CARMEN YULIN CRUZ"
+    elif name in {"SPEAKER JOHN BOEHNER"}:
+        return "JOHN BOEHNER"
+    elif name in {"PAUL PAUL RYAN"}:
+        return "PAUL RYAN"
     elif name in {"MIKE MULLEN"}:
         return "MICHAEL MULLEN"
     return name
@@ -42,6 +50,9 @@ def clean_names(name):
     
     for specific_title in specific_titles:
         name = name.replace(specific_title, "")
+    
+    for vice in ("VIE PRESIDENT", "VICE PRESIDENT"):
+        name = name.replace(vice, "")
         
     for title in titles:
         name = name.replace(title, "")
@@ -80,7 +91,7 @@ def get_mistaken_names():
 
 
 titles = ("PRESIDENT", "PRESDIENT", "PRESIDEDNT", "PRESIENT", "PRESIDNENT",
-          "PRIME MINISTER", "MAYOR",
+          "PRIME MINISTER", "MAYOR", "VICE  ",
           "CHANCELLOR", "DEPARTMENT SPOKESMAN",
           "U.S. ATTORNEY GENERAL", "U.S AMBASSADOR",
           "U.N. AMBASSADOR", "MEDAL OF HONOR RECIPIENT",
@@ -92,7 +103,7 @@ titles = ("PRESIDENT", "PRESDIENT", "PRESIDEDNT", "PRESIENT", "PRESIDNENT",
           "MISSISSIPPI", "JAPANESE", "SOUTH DAKOTA",
           "NORTH DAKOTA", "TEXAS STATE",
           "SECRETARY-GENERAL", "MAJORITY LEADER",
-          "ARIZONA", "NEW YORK", "ICONN.",
+          "ARIZONA", "NEW YORK", "ICONN.", "RWIS.",
           "MINNESOTA", "1ST", "REPRESENTATIVE",
           "HUDSON INSTITUTE",
           "GOV.", "REP.", "SEN.", "REPUBLICAN", "DEMOCRAT",
@@ -105,7 +116,8 @@ titles = ("PRESIDENT", "PRESDIENT", "PRESIDEDNT", "PRESIENT", "PRESIDNENT",
           "ACTING", "IC SENATOR")
 
 specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE UNITED STATE",
-                   "PRESIDENT OF THE UNITED STATES", "GERMAN CHANCELLOR",
+                   "PRESIDENT OF THE UNITED STATES", "VICE PRESIDENT-ELECT",
+                   "GERMAN CHANCELLOR",
                  "PRESIDENT-ELECT", "FORMER GOV.", "FMR. JUSTICE",
                  "1ST LT.", "2ND LT.", "2ND. LT.", "UTAH REP.", "1ST CLASS",
                  "FORMER U.S. AMBASSADOR TO VIETNAM", "FORMER U.S. CONGRESSWOMAN",
@@ -190,6 +202,7 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                    "SOUTH CAROLINA SENATOR",
                    "MIAMI HEAT FORWARD",
                    "CHIEF OPERATING",
+                   "FOR MITT ROMNEY",
                    "CHINESE FOREIGN MINISTER",
                    "– FOREIGN CORRESPONDENT",
                    "STANFORD BIOENGINEERING PROFESSOR",
