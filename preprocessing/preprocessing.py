@@ -39,6 +39,10 @@ def clean_name_edge_cases(name):
         return "PAUL RYAN"
     elif name in {"MIKE MULLEN"}:
         return "MICHAEL MULLEN"
+    elif name in {"JUSTICE ANTHONY KENNEDY"}:
+        return "ANTHONY KENNEDY"
+    elif name in {"THE  AL SHARPTON"}:
+        return "AL SHARPTON"
     return name
 
 def clean_names(name):
@@ -75,7 +79,7 @@ def clean_names(name):
             
     for misc in ("(D)", "(R)", "RMINN",
                  "(I)", "ICONN", "(IVA.)",
-                 "(D-N.C.)", "(RET.)", "-", "IAL CANDIDATE", "(IMAINE)",
+                 "(D-N.C.)", "(RET.)", "-", "IAL CANDIDATE", "VICE  ", "(IMAINE)",
                  "(ICONNECTICUT)", "(VTI)", "(VTD)", "(IVT)", "(IVA.)", "(IVA)",
                  "(VOICEOVER)", "(TO ANDRE)", " R)", "[NARRATION]", "[MAY 2014]"):
         name = name.replace(misc, "")
@@ -101,7 +105,7 @@ titles = ("PRESIDENT", "PRESDIENT", "PRESIDEDNT", "PRESIENT", "PRESIDNENT",
           "U.S. ARMY", "U.S.", "U. S.", "U.S",
           "R- WIS.", "MASSACHUSETTS", "MASS.",
           "MISSISSIPPI", "JAPANESE", "SOUTH DAKOTA",
-          "NORTH DAKOTA", "TEXAS STATE",
+          "NORTH DAKOTA", "TEXAS STATE", "TREASURY SECRETARY",
           "SECRETARY-GENERAL", "MAJORITY LEADER",
           "ARIZONA", "NEW YORK", "ICONN.", "RWIS.",
           "MINNESOTA", "1ST", "REPRESENTATIVE",
@@ -128,10 +132,12 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                    "OF DETROIT", "OF CONNECTICUT", "OF NEW MEXICO", "OF CALIFORNIA",
                    "ON CHINA", " AS LBJ",
                    "STAFF SGT.",
+                   "NAVY CAPTAIN",
                    "SOLICITOR GENERAL",
                    "POSTMASTER GENERAL",
                    "SENATE MAJORITY LEADER",
                    "SERGEANT MAJOR",
+                   "DETECTIVE SUPERINTENDENT",
                    "NATO SECRETARY-GENERAL",
                    "MAJOR GENERAL",
                    "INSPECTOR GENERAL",
@@ -238,6 +244,7 @@ specific_titles = ("FORMER U.S. PRESIDENT", "FMR. PRESIDENT", "PRESIDENT OF THE 
                    "SAINT LOUIS COUNTY POLICE CHIEF",
                    "POLICE COMMISSIONER",
                    "STATE WATER BOARD CHAIR",
+                   "HOMELAND SECURITY SECRETARY",
                    "OF THE DAILY BEAST",
                    "UNIVERSITY OF AKRON ECONOMIST",
                    "CHINESE FOREIGN MINISTRY SPOKESWOMAN",
@@ -262,7 +269,14 @@ mistakes = {'DANIEL SAYS THE SCIENTISTS ON THE TEAM AND THE MILITARY HAVE A SHAR
             'SPORTS GAMBLING IN NEVADA RECALLED THE METAPHOR',
             'AND A BLACK COLLEAGUE HAD CHALLENGED HER',
             "AND A WARNING",
-            'HILLARY CLINTON CAMPAIGN VOLUNTEER',
+            "EXAMPLE",
+            "RECORDS FELL IN JUNE",
+            'AT MIDNIGHT FRIDAY IN JUBA',
+            "FIRST",
+            "PEOPLE SOMETIMES SAY",
+            "THAT WAS",
+            "BUT I DO THINK",
+            "AT ABOUT 6",
             'BUT CLINTON THEN SAYS',
             'FOR HILLARY CLINTON',
             'STATE  JEN PSAKI ELABORATED',
@@ -275,7 +289,11 @@ mistakes = {'DANIEL SAYS THE SCIENTISTS ON THE TEAM AND THE MILITARY HAVE A SHAR
             'A VATICAN STATEMENT SAID',
  'BUT IN A STATEMENT',
  'BUT UNDER STATE LAW',
+            "AND ONCE THEY DECIDED",
  'FOR THE STATE',
+                               "THEN",
+                   "NOW",
+                   "BUT THE RECORD’S CLEAR",
  'IN A JOINT STATEMENT',
  'IN A STATEMENT',
  'IN A STATEMENT TODAY',
@@ -287,6 +305,12 @@ mistakes = {'DANIEL SAYS THE SCIENTISTS ON THE TEAM AND THE MILITARY HAVE A SHAR
             'SANDOVAL SAID IN A STATEMENT',
             'AND IN WASHINGTON',
             'IN WASHINGTON',
+            'SHE TOLD ME',
+            'BUT THE CHERNOBYL FORUM',
+            "AND AT THAT POINT",
+            "WE’RE HERE FROM 6",
+            "WITH THOSE FEARS QUIETED",
+            "AMONG THE PROTECTED ITEMS",
             'TO CRITICS BACK IN WASHINGTON',
             'WRITING IN THE WASHINGTON POST',
             'ACCORDING TO THE WASHINGTON POST',
@@ -396,6 +420,15 @@ mistakes = {'DANIEL SAYS THE SCIENTISTS ON THE TEAM AND THE MILITARY HAVE A SHAR
             'HE ALSO SAID TONIGHT',
             'HE HAS SAID EMPHATICALLY',
             'HE SAID',
+            "TONIGHT",
+            "WHEN WE TALKED RECENTLY",
+            "AS IT HAPPENS",
+            "IN RHODE ISLAND",
+            "ALL OF THIS",
+            "THE LATEST FLASH POINT",
+            "THE RESOLUTION IS CLEAR",
+            "AT 2",
+            "THIS TIME",
             'BETH DEROOS SAID',
             'BRANDO JOHNSON BAILEY SAID',
             'BRUCE MCCOY SAID',
