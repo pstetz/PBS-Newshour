@@ -17,6 +17,7 @@ import requests
 import urllib
 
 def get_story(url):
+    # Open
     page = urllib.request.urlopen(f"{url}#story")
     page = BeautifulSoup(page)
     
@@ -146,24 +147,26 @@ def scrap_all(url_dir, pages, df_dict, i, pbar, THREADS):
 
 ### A multiprocessing threading
 def scrap_threading(url_dir, THREADS, START, DURATION):
-    manager = mlt.Manager()
-    df_dict = manager.dict()
+    manager = mlt.Manager() # multiprocessing manager
+    df_dict = manager.dict() # Shared variable among threads
     jobs = []
-    pbar = tqdm(total=DURATION)
+    pbar = tqdm(total=DURATION) # progress bar
     
     # Splits all the pages needed into even lists.  Numpy's amazing!
     grouped_pages = np.arange(START, START+DURATION)
     grouped_pages = np.array_split(grouped_pages, THREADS)
     
+    # Start each thread
     for i, pages in enumerate(grouped_pages):
         p = mlt.Process(target=scrap_all, args=(url_dir, pages, df_dict, i, pbar, THREADS))
         jobs.append(p)
         p.start()
     
+    # Join all threads
     for proc in jobs:
         proc.join()
         
-    pbar.close()
+    pbar.close() # End progress bar
     return df_dict
 
 
