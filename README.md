@@ -8,7 +8,7 @@ Author: Patrick Stetz  [(github)](https://github.com/pstetz/)
 
 # <u>Background</u>
 
-PBS Newshour is American daily news program covering domestic and international current events.  It is currently hosted by Judy Woodruff on the weekdays and Hari Sreenivasan on the weekends.
+PBS Newshour is an American daily news program currently hosted by Judy Woodruff on the weekdays and Hari Sreenivasan on the weekends.
 
 Below we can see how the 17,617 clips/transcripts are distributed over time. 
 
