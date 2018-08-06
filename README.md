@@ -2,9 +2,13 @@
 |:--:| 
 
 
-# PBS Newshour - Data Mining and Analysis
+# PBS Newshour - Data Collection and Analysis
 
 Author: Patrick Stetz  [(github)](https://github.com/pstetz/)
+
+# <u>Data</u>
+
+All the data collected can be found on Kaggle ([link](https://www.kaggle.com/pstetz/pbs-newshour-transcripts)).
 
 # <u>Background</u>
 
@@ -16,7 +20,7 @@ Below we can see how the 17,617 clips/transcripts are distributed over time.
 
 The number of transcripts and clips available has signicantly increased since 2011.  This matches the year that Jim Lehrer retired as anchor.
 
-# <u>Data Mining</u>
+# <u>Data Collection</u>
 
 Code can be found under `scraping/`.
 
